@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="stylesheet" href="./s.css">
+  </head>
+<body>
+  <script src="./calculator.js"></script>
+      
+  <table>
+    <tr>
+      <input id="inp" type="text" value="0">
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <button onclick="clearInp()">Clear</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button value="1" onclick="numClick(this)">1</button>
+      </td>
+      <td>
+        <button value="2" onclick="numClick(this)">2</button>
+      </td>
+      <td>
+        <button value="3" onclick="numClick(this)">3</button>
+      </td>
+      <td>
+        <button value="+" onclick="funClick(this)">+</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button value="4" onclick="numClick(this)">4</button>
+      </td>
+      <td>
+        <button value="5" onclick="numClick(this)">5</button>
+      </td>
+      <td>
+        <button value="6" onclick="numClick(this)">6</button>
+      </td>
+      <td>
+        <button value="-" onclick="funClick(this)">-</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button value="7" onclick="numClick(this)">7</button>
+      </td>
+      <td>
+        <button value="8" onclick="numClick(this)">8</button>
+      </td>
+      <td>
+        <button value="9" onclick="numClick(this)">9</button>
+      </td>
+      <td>
+        <button value="*" onclick="funClick(this)">*</button>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button value="0" onclick="numClick(this)">0</button>
+      </td>
+      <td></td>
+      <td>
+        <button value="/" onclick="funClick(this)">/</button>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <button value="=" onclick="getResClick(this)">=</button>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

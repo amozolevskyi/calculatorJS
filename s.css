@@ -1,0 +1,30 @@
+
+body {
+    font-size: 30px;
+    color: yellow;
+    background-color: black;
+}
+
+table {
+    
+    height: 200px;
+    width: 200px;
+    background-color: blue;
+}
+
+td {
+    padding: 5px;
+}
+
+button {
+    padding: 5px;
+    font-size: 30px;
+    color: yellow;
+    background-color: black;
+}
+
+input {
+    font-size: 30px;
+    color: yellow;
+    background-color: black;
+}
