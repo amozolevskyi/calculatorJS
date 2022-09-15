@@ -1,70 +1,57 @@
-const valueObj = {
-                values: [],
-                instruction: null
-};
+const form = document.getElementById('form_calc');
+const output = document.getElementById('output');
+const operand_btns = document.querySelectorAll('button[data-type=operand]');
+const operator_btns = document.querySelectorAll("button[data-type=operator]");
 
-let numStr = '';
+let is_operator = false;
 
-function setNumStr(){
-    valueObj.values.push(numStr);
-    console.log('number: ' + numStr);
-    numStr = '';
-}
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+});
 
-function clearObj() {
-    valueObj.values = [];
-    valueObj.instruction = null;
-    console.log(JSON.stringify(valueObj));
-}
+operand_btns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        if(output.value == "0"){
+            output.value = e.target.value;
+        } else if(output.value.includes(".")){
+            output.value = output.value + "" + e.target.value.replace(".", ""); 
+        } else if(is_operator){
+            is_operator = false;
+            output.value = e.target.value;
+        } else {
+            output.value = output.value + "" + e.target.value;
+          }
+    })
+});
 
-function clearInp(){
-    document.getElementById('inp').value = "0";
-    clearObj();
-}
+let equation = [];
+operator_btns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.currentTarget.classList.add("active");
 
-function numClick(button) {
-    let butVal = button.value;
-    let defVal = document.getElementById('inp').value;
-
-    if(defVal === "0"){
-        document.getElementById('inp').value = butVal;
-        numStr += butVal;
-    } else {
-        document.getElementById('inp').value += butVal;
-        numStr += butVal;
+    switch (e.target.value) {
+      case "%":
+        output.value = parseFloat(output.value) / 100;
+        break;
+      case "invert":
+        output.value = parseFloat(output.value) * -1;
+        break;
+      case "=":
+        equation.push(output.value);
+        output.value = eval(equation.join(""));
+        equation = [];
+        break;
+      default:
+        let last_item = equation[equation.length - 1];
+        if (["/", "*", "+", "-"].includes(last_item) && is_operator) {
+          equation.pop();
+          equation.push(e.target.value);
+        } else {
+          equation.push(output.value);
+          equation.push(e.target.value);
+        }
+        is_operator = true;
+        break;
     }
-}
-
-function funClick(button) {
-    setNumStr();
-    let instruction = button.value;
-    document.getElementById('inp').value += instruction;
-    valueObj.instruction = instruction;
-    console.log(JSON.stringify(valueObj));
-}
-
-function getResClick(button) {
-    setNumStr();
-    console.log(JSON.stringify(valueObj));
-
-    let a = Number(valueObj.values[0]);
-    let b = Number(valueObj.values[1]);
-
-    switch(valueObj.instruction) {
-        case '+':
-            document.getElementById('inp').value = a + b;
-            break;
-            
-        case '-':
-            document.getElementById('inp').value = a - b;
-            break;
-
-        case '*':
-            document.getElementById('inp').value = a * b;
-            break;
-        
-        case '/':
-            document.getElementById('inp').value = a / b;
-            break;
-    }
-}
+  });
+});
