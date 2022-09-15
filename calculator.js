@@ -9,6 +9,12 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
 });
 
+const remove_active = () => {
+    operator_btns.forEach((btn) => {
+     btn.classList.remove("active")
+    ;});
+   };
+
 operand_btns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
         if(output.value == "0"){
@@ -27,6 +33,7 @@ operand_btns.forEach((btn) => {
 let equation = [];
 operator_btns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
+    remove_active();
     e.currentTarget.classList.add("active");
 
     switch (e.target.value) {
